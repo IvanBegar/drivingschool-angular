@@ -1,0 +1,28 @@
+<!-- Button to open the modal -->
+<nav onclick="document.getElementById('id02').style.display='block'">Зареєструватися</nav>
+
+<!-- The Modal (contains the Sign Up form) -->
+<div id="id02" class="modal">
+  <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal"></span>
+  <form class="modal-content">
+    <div class="container">
+      <h1>Реєстрація</h1>
+      <p>Будь-ласка заповніть поля:</p>
+      <hr>
+      <label for="email"><b>Email</b></label>
+      <input type="text" placeholder="Введіть email" name="email" required>
+
+      <label for="psw"><b>Пароль</b></label>
+      <input type="password" placeholder="Пароль" name="psw" required>
+
+      <label for="psw-repeat"><b>Повторіть пароль</b></label>
+      <input type="password" placeholder="Пароль" name="psw-repeat" required>
+      <div>
+        <button type="submit" class="signup">Заруєструватися</button>
+      </div>
+      <div class="clearfix">
+        <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Скасувати</button>
+      </div>
+    </div>
+  </form>
+</div>

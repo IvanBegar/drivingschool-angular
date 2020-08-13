@@ -1,0 +1,31 @@
+<!-- Button to open the modal login form -->
+<nav type="nav" onclick="document.getElementById('id01').style.display='block'">Логін</nav>
+
+<!-- The Modal -->
+<div id="id01" class="modal">
+  <span onclick="document.getElementById('id01').style.display='none'"
+        class="close" title="Close Modal">&times;</span>
+
+  <!-- Modal Content -->
+  <form class="modal-content animate" >
+
+    <div class="container">
+      <label for="uname"><b>Логін</b></label>
+      <input type="text" placeholder="Логін" name="uname" required>
+
+      <label for="psw"><b>Пароль</b></label>
+      <input type="password" placeholder="Пароль" name="psw" required>
+
+      <button type="submit">Ввійти</button>
+      <p>
+      <label>
+        <input type="checkbox" checked="checked" name="remember"> Зберегти пароль
+      </label>
+      </p>
+    </div>
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Скасувати</button>
+      <span class="psw">   Забули <a href="#">пароль?</a></span>
+    </div>
+  </form>
+</div>
