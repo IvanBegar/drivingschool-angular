@@ -1,0 +1,183 @@
+/*######## Установка и парсинг рекламы Google Adsense 1.1 - 01.02.2017  ###################################################*/
+
+(function() {
+	var userLevel=parseFloat(GetCookie ('_c4_users_level'));
+  
+ //  if (GetCookie ('USER_AUTH_ID')){return;}
+   if (userLevel>0){return;}
+
+
+   /*######## Google Feed ###################################################*/
+// 
+   var code_top='<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5306303895924240" data-ad-slot="9744244814" data-ad-format="auto"></ins>';
+   var code_top2='<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5306303895924240" data-ad-slot="3980209864" data-ad-format="auto"></ins>';
+   var code_fw='<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5306303895924240" data-ad-slot="3980209864" data-full-width-responsive="true" data-ad-format="auto"></ins>';
+   var code_left='<ins class="adsbygoogle" style="display:inline-block;width:240px;height:400px" data-ad-client="ca-pub-5306303895924240" data-ad-slot="6651177618"></ins>';
+   var code_bottom='<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5306303895924240" data-ad-slot="6976760419" data-ad-format="auto"></ins>';
+   
+   var code_middle='<div class="it-adblk it-adblk-middle" role="advertizing_middle"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5306303895924240" data-ad-slot="3980209864" data-ad-format="auto"></ins></div>';
+   var code_related='<div class="it-adblk it-adblk-related" role="advertizing_related"><ins class="adsbygoogle" style="display:block" data-ad-format="autorelaxed" data-ad-client="ca-pub-5306303895924240" data-ad-slot="7858401197"></ins></div>';
+
+	
+   var activate_advert=function(){
+      (adsbygoogle = window.adsbygoogle || []).push({
+      });
+   }
+
+   var activate_dom=function(){
+   
+		//Автоматизированные объявления
+   /*   (adsbygoogle = window.adsbygoogle || []).push({
+         google_ad_client: "pub-5306303895924240",
+         enable_page_level_ads: true
+      });
+
+		return ;*/
+      
+      if (MOB){
+         $('[role="advertizing_left"]').remove();
+
+         if ($('[data-scope-element]').size()>0){//Элемент
+
+            $('[data-scope-element] ._content').after($('[role="advertizing"]'));
+            $('[data-scope-element] .element_data_wrapper').after($('[role="advertizing_bottom"]'));
+
+         }else{
+            if ($('[role="content-wrapper"] .photo2_list').size()>0){//Есть списки на странице
+            
+               $advert_clone=$('[role="advertizing"]').clone();
+               $advert_clone2=$('[role="advertizing"]').clone();
+               $('[role="advertizing"]').remove();
+               
+               $advert_clone2.attr('role','advertizing2');
+               
+               var $list=$('[role="content-wrapper"] .photo2_list');
+               var items_count=$list.find('.photo2_tmb').size();
+
+               var index1=Math.round(Math.random()*items_count/2);
+               var index1=0;
+               var index2=Math.round(items_count/2+Math.random()*items_count/2);
+               var index3=Math.round(items_count/3+Math.random()*items_count/3);
+
+//console.log(items_count);
+//console.log(index1);
+//console.log(index3);
+
+
+               $list.find('.photo2_tmb').eq(index1).after($advert_clone);               
+               $list.find('.photo2_tmb').eq(index3).after($advert_clone2);               
+               //$list.find('.photo2_tmb').eq(index3).after($advert_clone);               
+               //$list.find('.photo2_tmb').eq(index1).after($('<div class="photo2_tmb" style="width:100%" role="advertizing">'+code_top+'</div>'));               
+             //  $list.find('.photo2_tmb').eq(index1).after();               
+            //   $list.find('.photo2_tmb').eq(index3).after(code_middle);           
+            //   $('[role="advertizing_bottom"]').appendTo($list.find('.photo2_list_items'));
+            }
+         }
+
+
+         //Другие страницы
+          $('[role="advertizing"]').html(code_top2);
+          $('[role="advertizing2"]').html(code_top);
+        // activate_advert();
+         $('[role="advertizing_bottom"]').html(code_bottom);
+        // activate_advert();       
+
+
+      }else{ //Десктоп
+         $('[role="advertizing_left"]').html(code_left);
+       // activate_advert();
+
+         $('[role="advertizing"]').html(code_top2);
+        // activate_advert();
+
+         $('[role="advertizing_bottom"]').html(code_bottom);
+        // activate_advert();    
+         
+       //  $('[role="advertizing_left"]').after(code_related);
+       //  activate_advert();  
+      }
+//console.log('dom created'); 
+   }
+   
+   $(function(){  
+      activate_dom();
+
+      $.getScript("//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js",function(){      
+      	$('.adsbygoogle').each(function(){
+            activate_advert();
+         });
+         
+         //  console.log('script loaded');      
+      });
+   });
+
+   /*
+
+      if ($('.dmt_list .dmt_list_item').size()>0){
+
+         $('.dmt_list[data-scope="dmt_list"]').each(function(n){
+
+            var items_count=$(this).find('.dmt_list_item').size()-1;
+
+
+            var rotate_type=Math.round(Math.random()); //Полоски или элементы
+            var rotate_type=1; //Только полоски
+
+
+            var r0=Math.round(Math.random()*items_count/3);
+            var r01=Math.round(Math.random()*items_count/3);
+            var r=Math.round(Math.random()*items_count);
+            var r1=Math.round(Math.random()*items_count);
+            var r2=Math.round(Math.random()*items_count);     
+
+
+            $(this).find('.dmt_list_item').each(function(n){
+               if (rotate_type==1){
+                  if (n==3*r0-1){					
+                     $(this).after('<div class="advertizing_list_line">'+code_feed_line+'</div>');  
+                     activate();  //Активация 
+
+                  }
+                  if (n==items_count){					
+                     $(this).after('<div class="advertizing_list_line">'+code_feed_bottom+'</div>');  
+                     activate();  //Активация 
+
+                  }
+               }
+
+
+               if (rotate_type==0){
+
+                  if (n==r){					
+                     $(this).after('<div class="advertizing_list">'+code_feed+'</div>');     
+                     activate();  //Активация 
+                  }
+                  if (n==r1 && items_count>3){					
+                     $(this).after('<div class="advertizing_list">'+code_feed+'</div>');       
+                     activate();  //Активация 
+                  }
+                  if (n==r2 && items_count>6){					
+                     $(this).after('<div class="advertizing_list">'+code_feed+'</div>');     
+                     activate();  //Активация 
+                  }
+               }
+
+
+            });
+         });
+      }
+
+
+
+      if (!MOB && $('.advert_right_columnt').size()>0){ 
+         $('.advert_right_columnt').append('<div>'+code_element_right+'</div>');    
+         activate();  //Активация 
+      }
+
+      if (MOB && $('.advert_after_nav').size()>0){ //В мобильной версии показываем верхний 
+         $('.advert_after_nav').append('<div>'+code_element_top+'</div>');    
+         activate();  //Активация 
+      }
+*/
+   })();
+
