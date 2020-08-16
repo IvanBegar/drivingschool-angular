@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {ScheduleByGroupDTO} from './model/schedule-by-group-dto';
+import {ApiService} from '../shared/api.service';
+
 
 @Component({
   selector: 'app-schedule-by-category',
@@ -7,26 +9,21 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./schedule-by-group.component.css']
 })
 export class ScheduleByGroupComponent implements OnInit {
-  scheduleByGroupDTO: ScheduleByGroup = {
-  group: '',
-  scheduleForm: '',
-  scheduleDescription: ''
-};
+  schedules: ScheduleByGroupDTO[] = [];
 
-  constructor(private http: HttpClient) {
+  constructor(private apiService: ApiService) {
   }
 
   ngOnInit(): void {
+    this.getSchedulesByGroupDTO();
   }
 
-  // getSchedulesByGroup(): ScheduleByGroup{
-  // const url = 'http://localhost:8080/schedules-per-groups';
-  //
-  // }
+  public getSchedulesByGroupDTO(): ScheduleByGroupDTO[]{
+    this.apiService.getSchedulesByGroupDTO().subscribe(
+      res => {
+        this.schedules = res;
+    });
+    return this.schedules;
+  }
 }
 
-export interface ScheduleByGroup {
-  group: string;
-  scheduleForm: string;
-  scheduleDescription: string;
-}

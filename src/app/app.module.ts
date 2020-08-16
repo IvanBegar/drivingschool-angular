@@ -7,7 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { RegistrationComponent } from './registration/registration.component';
 import { HomeComponent } from './home/home.component';
-import { PricesComponent } from './prices/prices.component';
+import { CategoryComponent } from './category/category.component';
 import { ScheduleByFormComponent } from './schedule-by-form/schedule-by-form.component';
 import { ScheduleByGroupComponent } from './schedule-by-group/schedule-by-group.component';
 import { TeachersComponent } from './teachers/teachers.component';
@@ -15,6 +15,15 @@ import { VehiclesComponent } from './vehicles/vehicles.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { Router, RouterModule, Routes} from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { SideNavigationComponent } from './side-navigation/side-navigation.component';
+import { GroupComponent } from './groups/group/group.component';
+import { GroupsComponent } from './groups/groups.component';
+import { GroupListComponent } from './groups/group-list/group-list.component';
+import { SchedulesComponent } from './schedules/schedules.component';
+import { ScheduleComponent } from './schedules/schedule/schedule.component';
+import { ScheduleListComponent } from './schedules/schedule-list/schedule-list.component';
+import { ScheduleService } from './schedules/shared/schedule.service';
+import { ApiService } from './shared/api.service';
 
 const appRoutes: Routes = [
   {
@@ -22,15 +31,15 @@ const appRoutes: Routes = [
     component: HomeComponent
   },
   {
-    path: 'prices',
-    component: PricesComponent
+    path: 'category',
+    component: CategoryComponent
   },
   {
-    path: 'schedule/by-group',
+    path: 'by-group',
     component: ScheduleByGroupComponent
   },
   {
-    path: 'schedule/by-form',
+    path: 'by-form',
     component: ScheduleByFormComponent
   },
   {
@@ -49,6 +58,14 @@ const appRoutes: Routes = [
     path: '',
     redirectTo: '/home',
     pathMatch: 'full'
+  },
+  {
+    path: 'groups',
+    component: GroupsComponent
+  },
+  {
+    path: 'schedules',
+    component: SchedulesComponent
   }
 ];
 
@@ -59,12 +76,19 @@ const appRoutes: Routes = [
     LoginComponent,
     RegistrationComponent,
     HomeComponent,
-    PricesComponent,
+    CategoryComponent,
     ScheduleByFormComponent,
     ScheduleByGroupComponent,
     TeachersComponent,
     VehiclesComponent,
-    ContactsComponent
+    ContactsComponent,
+    SideNavigationComponent,
+    GroupComponent,
+    GroupsComponent,
+    GroupListComponent,
+    SchedulesComponent,
+    ScheduleComponent,
+    ScheduleListComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,7 +96,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     HttpClientModule
   ],
-  providers: [],
+  providers: [ScheduleService, ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

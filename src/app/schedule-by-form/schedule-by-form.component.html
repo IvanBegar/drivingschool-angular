@@ -1,1 +1,15 @@
-<p>schedule-by-form works!</p>
+<head>
+</head>
+<body>
+<h1>Розклад за формою навчання</h1>
+<table id="customers">
+  <tr>
+    <th>Форма навчання</th>
+    <th>Розклад</th>
+  </tr>
+  <tr *ngFor="let ScheduleByForm of schedules">
+    <td>{{ScheduleByForm.name.toString()}}</td>
+    <td>{{ScheduleByForm.description.toString()}}</td>
+  </tr>
+</table>
+</body>

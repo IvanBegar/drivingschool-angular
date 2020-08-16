@@ -7,20 +7,21 @@
 #customers td, #customers th {
   border: 1px solid #ddd;
   padding: 8px;
+  color: black;
+  background-color: transparent;
 }
 
-#customers tr:nth-child(even){background-color: #f2f2f2;}
-
-#customers tr:hover {background-color: #ddd;}
+#customers tr{background-color: transparent;}
 
 #customers th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  background-color: #4CAF50;
-  color: white;
+  background-color: gray;
+  color: black;
 }
 h1 {
   text-align: center;
+  color: black;
 }
 

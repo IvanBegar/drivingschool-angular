@@ -57,7 +57,7 @@ button:hover {
 
 /* Add padding to container elements */
 .container {
-  padding: 20px;
+  padding: 10px;
 }
 
 /* The Modal (background) */
@@ -70,7 +70,7 @@ button:hover {
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
-  background-color: #474e5d;
+  background-color: transparent;
   padding-top: 100px;
 }
 
@@ -80,7 +80,7 @@ button:hover {
   margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
   border: 1px solid #888;
   width: 500px; /* Could be more or less, depending on screen size */
-  height: 432px;
+  height: 350px;
 }
 
 /* Style the horizontal ruler */

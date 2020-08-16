@@ -1,2 +1,51 @@
 /* You can add global styles to this file, and also import other style files */
-@import "../node_modules/font-awesome/css/font-awesome.css";
+@import "../node_modules/bootstrap/dist/css/bootstrap-grid.min.css";
+@import "../node_modules/font-awesome/css/font-awesome.min.css";
+
+body, html {
+  height: 100%;
+}
+
+.bg {
+  /* The image used */
+  background-image: url("car.htm");
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.form-group>input{
+  font-weight: bolder;
+}
+.form-group>label{
+  font-weight: lighter;
+}
+
+button[type="submit"]{
+  background-color: #67dfd4;
+  color: #fff;
+
+}
+.jumbotron{
+  background-color: transparent;
+  padding-top: 10px;
+}
+
+table tr:hover{
+  cursor: pointer;
+}
+
+input.ng-touched.ng-invalid{
+  border-color: #dc3545;
+}
+div.validation-error{
+  width: 100%;
+  margin-top: .15rem;
+  font-size: 80%;
+  color: #dc3545;
+}

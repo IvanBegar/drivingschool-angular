@@ -1,0 +1,17 @@
+<head>
+</head>
+<body>
+<h1>Інформація по категоріям</h1>
+<table id="customers">
+  <tr>
+    <th>Категорія</th>
+    <th>Вартість навчання, грн</th>
+    <th>Терміни навчання</th>
+  </tr>
+  <tr *ngFor="let Category of categories">
+    <td>{{Category.name}}</td>
+    <td>{{Category.payment}}</td>
+    <td>{{Category.studyTime}}</td>
+  </tr>
+</table>
+</body>
