@@ -1,28 +1,34 @@
-<!-- Button to open the modal -->
-<nav onclick="document.getElementById('id02').style.display='block'">Зареєструватися</nav>
-
-<!-- The Modal (contains the Sign Up form) -->
-<div id="id02" class="modal">
-  <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal"></span>
-  <form class="modal-content">
+<form class="modal-content animate" #form="ngForm" (submit)="onSubmit(form)">
     <div class="container">
       <h1>Реєстрація</h1>
-      <p>Будь-ласка заповніть поля:</p>
       <hr>
-      <label for="email"><b>Email</b></label>
-      <input type="text" placeholder="Введіть email" name="email" required>
-
-      <label for="psw"><b>Пароль</b></label>
-      <input type="password" placeholder="Пароль" name="psw" required>
-
-      <label for="psw-repeat"><b>Повторіть пароль</b></label>
-      <input type="password" placeholder="Пароль" name="psw-repeat" required>
-      <div>
-        <button type="submit" class="signup">Заруєструватися</button>
+        <div class="form-group">
+          <label><b>Ім'я користувача</b></label>
+            <input type="text" placeholder="Введіть ім'я" name="username" #username="ngModel" [(ngModel)]="user.username" required>
+            <div class="validation-error" *ngIf="username.invalid && username.touched">Потрібно заповнити!</div>
+        </div>
+        <div class="form-group">
+          <label><b>Пароль</b></label>
+            <input type="password" placeholder="Пароль" name="password" #password="ngModel" [(ngModel)]="user.password" required>
+            <div class="validation-error" *ngIf="password.invalid && password.touched">Потрібно заповнити!</div>
+        </div>
+      <label><b>Роль користувача</b></label>
+        <div>
+          <select name="role" id="role" #role="ngModel" [(ngModel)]="user.role">
+            <option>User</option>
+            <option>Admin</option>
+          </select>
+        </div>
+      <div class="success-alert"  *ngIf="showMsg">
+          <p>
+            <strong>Registration Success!</strong>
+          </p>
+      </div>
+      <div class="form-group">
+        <button type="submit" name="submit" [disabled]="form.invalid" class="signup">Заруєструвати користувача</button>
       </div>
       <div class="clearfix">
-        <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Скасувати</button>
+        <button type="button" (click)=goHome() class="cancelbtn" >Скасувати</button>
       </div>
     </div>
-  </form>
-</div>
+</form>

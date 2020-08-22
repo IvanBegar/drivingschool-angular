@@ -10,27 +10,26 @@ export class ScheduleService {
   formData: Schedule;
   list: Schedule[];
 
-  constructor(private service: ApiService,
+  constructor(private apiService: ApiService,
               @Inject(DOCUMENT) private document: Document) { }
 
   addSchedule(formData: Schedule) {
-    this.service.addSchedule(formData);
-    this.reloadMethod();
+    this.apiService.addSchedule(formData);
   }
 
   refreshSchedule() {
-    this.service.getSchedulesByForm().toPromise().then(res => this.list = res as Schedule[]);
+    this.apiService.getSchedulesByForm().toPromise().then(res => this.list = res as Schedule[]);
   }
 
   reloadMethod(){ this.document.location.reload(); }
 
   updateSchedule(formData: Schedule) {
-    this.service.updateSchedule(formData);
+    this.apiService.updateSchedule(formData);
     this.reloadMethod();
   }
 
   deleteSchedule(schedule_id: number) {
-    this.service.deleteSchedule(schedule_id);
+    this.apiService.deleteSchedule(schedule_id);
     this.refreshSchedule();
   }
 }

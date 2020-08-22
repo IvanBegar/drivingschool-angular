@@ -81,7 +81,7 @@ button:hover {
   margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
   border: 1px solid #888;
   width: 500px; /* Could be more or less, depending on screen size */
-  height: 570px;
+  height: auto;
 }
 
 /* Style the horizontal ruler */
@@ -118,4 +118,36 @@ hr {
   .cancelbtn, .signupbtn {
     width: 100%;
   }
+}
+
+h1 {
+  margin-top: 0;
+}
+
+select {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+select {
+  background: #f1f1f1;
+  outline: none;
+}
+
+div.validation-error{
+  text-align: center;
+  color: #dc3545;
+  margin-top: -18px;
+  font-size: 15px;
+}
+
+.success-alert {
+  text-align: center;
+  color: green;
+  margin-top: -20px;
+  font-size: 15px;
 }

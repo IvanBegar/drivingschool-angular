@@ -80,7 +80,7 @@ button:hover {
   margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
   border: 1px solid #888;
   width: 500px; /* Could be more or less, depending on screen size */
-  height: 350px;
+  height: auto;
 }
 
 /* Style the horizontal ruler */
@@ -117,4 +117,10 @@ hr {
   .cancelbtn, .signupbtn {
     width: 150px;
   }
+}
+.alert {
+  text-align: center;
+  color: orangered;
+  top: 0;
+
 }

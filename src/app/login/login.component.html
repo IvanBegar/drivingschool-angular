@@ -1,25 +1,14 @@
-<!-- Button to open the modal login form -->
-<nav type="nav" onclick="document.getElementById('id01').style.display='block'">Логін</nav>
-
-<!-- The Modal -->
-<div id="id01" class="modal">
-  <span onclick="document.getElementById('id01').style.display='none'"
-        class="close" title="Close Modal">&times;</span>
-
-  <!-- Modal Content -->
-  <form class="modal-content animate" >
-
+<form class="modal-content animate" (submit)=doLogin()>
     <div class="container">
-      <label for="uname"><b>Логін</b></label>
-      <input type="text" placeholder="Логін" name="uname" required>
+      <label for="username"><b>Логін</b></label>
+      <input type="text" class="form-control" id="username" placeholder="Логін" name="username" [(ngModel)]="username" required datatype="string">
 
-      <label for="psw"><b>Пароль</b></label>
-      <input type="password" placeholder="Пароль" name="psw" required>
-
-      <button type="submit">Ввійти</button>
+      <label for="password"><b>Пароль</b></label>
+      <input type="password" class="form-control" id="password" placeholder="Пароль" name="password" [(ngModel)]="password" required datatype="string">
+      <div class="alert" *ngIf='invalidLogin'>{{errorMessage}}</div>
+      <button type="submit"  >Ввійти</button>
     </div>
     <div class="container" style="background-color:#f1f1f1">
-      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Скасувати</button>
+      <button type="button" (click)=goHome() class="cancelbtn" >Скасувати</button>
     </div>
   </form>
-</div>

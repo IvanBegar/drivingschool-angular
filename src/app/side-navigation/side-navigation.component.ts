@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ApiService} from '../shared/api.service';
 
 @Component({
   selector: 'app-side-navigation',
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./side-navigation.component.css']
 })
 export class SideNavigationComponent implements OnInit {
+  ROLE_TOKEN: string = this.apiService.ROLE_TOKEN;
 
-  constructor() { }
+  constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
   }
 
+  isAdmin(): boolean{
+    if (sessionStorage.getItem(this.ROLE_TOKEN) === '[ROLE_ADMIN]') {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

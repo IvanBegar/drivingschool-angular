@@ -125,3 +125,31 @@
 .sticky + .content {
   padding-top: 60px;
 }
+nav{
+  float: right;
+  background-color: #4CAF50;
+  color: white;
+  text-align: center;
+  padding: 14px 20px;
+  border: none;
+  cursor: pointer;
+  width: 110px;
+  font-size: 17px;
+}
+.logout{
+  float: right;
+}
+.logout a{
+  color: grey;
+}
+.login{
+  float: right;
+  background-color: #4CAF50;
+  color: white;
+  text-align: center;
+  padding: 14px 20px;
+  border: none;
+  cursor: pointer;
+  width: 110px;
+  font-size: 17px;
+}

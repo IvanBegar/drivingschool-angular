@@ -17,7 +17,7 @@ export class ScheduleComponent implements OnInit {
     this.resetForm();
   }
 
-  reloadMethod(){ this.document.location.reload(); }
+  reloadMethod() { this.document.location.reload(); }
 
   resetForm(form?: NgForm): void{
     if (form != null){
@@ -33,24 +33,22 @@ export class ScheduleComponent implements OnInit {
   onSubmit(form: NgForm) {
     if (form.value.schedule_id == null){
       this.addSchedule(form);
-      this.scheduleService.reloadMethod();
+      // this.scheduleService.reloadMethod();
     } else {
       this.updateSchedule(form);
-      this.scheduleService.reloadMethod();
+      // this.scheduleService.reloadMethod();
     }
   }
 
   addSchedule(form: NgForm) {
     this.scheduleService.addSchedule(form.value);
-    this.resetForm(form);
-    this.reloadMethod();
-    this.scheduleService.reloadMethod();
+    // this.resetForm(form);
+    // this.reloadMethod();
   }
 
   updateSchedule(form: NgForm) {
     this.scheduleService.updateSchedule(form.value);
-    this.resetForm(form);
-    this.reloadMethod();
-    this.scheduleService.reloadMethod();
+    // this.resetForm(form);
+    // this.reloadMethod();
   }
 }

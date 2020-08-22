@@ -13,8 +13,13 @@
     <a href="teachers">Наші викладачі</a>
     <a href="vehicles">Наші машини</a>
     <a href="contacts">Контакти</a>
-    <app-login></app-login>
-    <app-registration></app-registration>
+    <a *ngIf="isAdmin()" href="sign-in">Реєстрація користувача</a>
+    <div [hidden]="isLoggedIn">
+      <nav (click)=goLogin()>Ввійти</nav>
+    </div>
+    <div class="logout">
+      <a *ngIf="isLoggedIn" class="nav-link" href="/logout" (click)=handleLogout()>Вийти</a>
+    </div>
     <app-side-navigation></app-side-navigation>
     <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
 </div>

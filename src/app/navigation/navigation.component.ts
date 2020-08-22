@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
+import {ApiService} from '../shared/api.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-navigation',
@@ -6,19 +9,30 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent implements OnInit {
+  isLoggedIn = false;
 
-  constructor() {
+  constructor(private router: Router,
+              private apiService: ApiService) {
   }
 
   ngOnInit(): void {
+    this.isLoggedIn = this.apiService.isUserLoggedIn();
+    console.log('menu ->' + this.isLoggedIn);
   }
 
-  myFunction(): void {
-    const x = document.getElementById('myTopnav');
-    if (x.className === 'topnav') {
-      x.className += ' responsive';
-    } else {
-      x.className = 'topnav';
-    }
+  goLogin() {
+    this.router.navigate(['/login']);
+  }
+
+  goSignIn() {
+    this.router.navigate(['/sign-in']);
+  }
+
+  handleLogout() {
+    this.apiService.logout();
+}
+
+  isAdmin(): boolean{
+    return this.apiService.isAdmin();
   }
 }

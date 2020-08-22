@@ -14,7 +14,7 @@ import { TeachersComponent } from './teachers/teachers.component';
 import { VehiclesComponent } from './vehicles/vehicles.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { Router, RouterModule, Routes} from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { SideNavigationComponent } from './side-navigation/side-navigation.component';
 import { GroupComponent } from './groups/group/group.component';
 import { GroupsComponent } from './groups/groups.component';
@@ -24,6 +24,8 @@ import { ScheduleComponent } from './schedules/schedule/schedule.component';
 import { ScheduleListComponent } from './schedules/schedule-list/schedule-list.component';
 import { ScheduleService } from './schedules/shared/schedule.service';
 import { ApiService } from './shared/api.service';
+import {HttpInterceptorService} from './shared/http-interceptor-service.service';
+import { LogoutComponent } from './logout/logout.component';
 
 const appRoutes: Routes = [
   {
@@ -66,6 +68,17 @@ const appRoutes: Routes = [
   {
     path: 'schedules',
     component: SchedulesComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'logout', component: LoginComponent
+  },
+  {
+    path: 'sign-in',
+    component: RegistrationComponent
   }
 ];
 
@@ -89,6 +102,7 @@ const appRoutes: Routes = [
     SchedulesComponent,
     ScheduleComponent,
     ScheduleListComponent,
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,
@@ -96,7 +110,13 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     HttpClientModule
   ],
-  providers: [ScheduleService, ApiService],
+  providers: [ScheduleService,
+    ApiService, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: HttpInterceptorService,
+    multi: true
+  }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
