@@ -26,6 +26,7 @@ import { ScheduleService } from './schedules/shared/schedule.service';
 import { ApiService } from './shared/api.service';
 import {HttpInterceptorService} from './shared/http-interceptor-service.service';
 import { LogoutComponent } from './logout/logout.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const appRoutes: Routes = [
   {
@@ -79,6 +80,10 @@ const appRoutes: Routes = [
   {
     path: 'sign-in',
     component: RegistrationComponent
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent
   }
 ];
 
@@ -103,6 +108,7 @@ const appRoutes: Routes = [
     ScheduleComponent,
     ScheduleListComponent,
     LogoutComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

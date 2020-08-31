@@ -15,10 +15,6 @@ export class SideNavigationComponent implements OnInit {
   }
 
   isAdmin(): boolean{
-    if (sessionStorage.getItem(this.ROLE_TOKEN) === '[ROLE_ADMIN]') {
-      return true;
-    } else {
-      return false;
-    }
+    return this.apiService.isAdmin();
   }
 }

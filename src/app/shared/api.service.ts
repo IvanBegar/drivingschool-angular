@@ -7,6 +7,7 @@ import {Category} from '../category/model/category';
 import {Teacher} from '../teachers/model/teacher';
 import {Schedule} from '../schedules/shared/schedule.model';
 import {User} from './user.model';
+import {Roles} from './roles.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,7 @@ export class ApiService {
   private LOGIN_URL = `${this.BASE_URL}\\login`;
   private SCHEDULE_BY_GROUP_DTO_URL = `${this.BASE_URL}\\schedules\\per-groups`;
   private ALL_SCHEDULES_URL = `${this.BASE_URL}\\schedules\\all`;
+  private SCHEDULES_URL = `${this.BASE_URL}\\schedules`;
   private ALL_CATEGORIES_URL = `${this.BASE_URL}\\categories\\all`;
   private TEACHER_URL = `${this.BASE_URL}\\teachers\\`;
 
@@ -44,15 +46,15 @@ export class ApiService {
   }
 
   addSchedule(schedule: Schedule){
-    this.http.post(this.ALL_SCHEDULES_URL, schedule).subscribe();
+    this.http.post(this.SCHEDULES_URL, schedule).subscribe();
   }
 
   updateSchedule(formData: Schedule){
-    this.http.put(this.ALL_SCHEDULES_URL, formData).subscribe();
+    this.http.put(this.SCHEDULES_URL, formData).subscribe();
   }
 
   deleteSchedule(schedule_id: number) {
-    this.http.delete(this.ALL_SCHEDULES_URL + '/' + schedule_id).subscribe();
+    this.http.delete(this.SCHEDULES_URL + '/' + schedule_id).subscribe();
   }
 
   doLogin(userName: string, password: string) {
@@ -96,7 +98,7 @@ export class ApiService {
   }
 
   isAdmin(): boolean{
-    return sessionStorage.getItem(this.ROLE_TOKEN) === '[ROLE_ADMIN]';
+    return sessionStorage.getItem(this.ROLE_TOKEN) === Roles.ROLE_ADMIN;
   }
 
   registerUser(user: User) {

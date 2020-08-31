@@ -25,7 +25,6 @@ export class ScheduleService {
 
   updateSchedule(formData: Schedule) {
     this.apiService.updateSchedule(formData);
-    this.reloadMethod();
   }
 
   deleteSchedule(schedule_id: number) {

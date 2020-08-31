@@ -35,4 +35,8 @@ export class NavigationComponent implements OnInit {
   isAdmin(): boolean{
     return this.apiService.isAdmin();
   }
+
+  isUserLoggedIn() {
+    return this.apiService.isUserLoggedIn();
+  }
 }

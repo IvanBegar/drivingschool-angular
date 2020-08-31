@@ -33,22 +33,18 @@ export class ScheduleComponent implements OnInit {
   onSubmit(form: NgForm) {
     if (form.value.schedule_id == null){
       this.addSchedule(form);
-      // this.scheduleService.reloadMethod();
     } else {
       this.updateSchedule(form);
-      // this.scheduleService.reloadMethod();
     }
   }
 
   addSchedule(form: NgForm) {
     this.scheduleService.addSchedule(form.value);
-    // this.resetForm(form);
-    // this.reloadMethod();
+    this.reloadMethod();
   }
 
   updateSchedule(form: NgForm) {
     this.scheduleService.updateSchedule(form.value);
-    // this.resetForm(form);
-    // this.reloadMethod();
+    this.reloadMethod();
   }
 }

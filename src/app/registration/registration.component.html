@@ -1,4 +1,4 @@
-<form class="modal-content animate" #form="ngForm" (submit)="onSubmit(form)">
+<form class="modal-content animate" #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
     <div class="container">
       <h1>Реєстрація</h1>
       <hr>
@@ -12,23 +12,35 @@
             <input type="password" placeholder="Пароль" name="password" #password="ngModel" [(ngModel)]="user.password" required>
             <div class="validation-error" *ngIf="password.invalid && password.touched">Потрібно заповнити!</div>
         </div>
-      <label><b>Роль користувача</b></label>
-        <div>
-          <select name="role" id="role" #role="ngModel" [(ngModel)]="user.role">
+        <div class="form-group">
+        <label><b>Роль користувача</b></label>
+        <label>
+          <select [(ngModel)]="user.role" name="role">
             <option>User</option>
             <option>Admin</option>
           </select>
+        </label>
         </div>
-      <div class="success-alert"  *ngIf="showMsg">
+        <div class="form-group">
+          <label><b>Номер телефона (При реєстації студента)</b></label>
+          <input type="tel" placeholder="+380XXXXXXXXX" name="phone" #phone="ngModel" [(ngModel)]="user.phone" [pattern]="mobNumberPattern">
+          <div class="validation-error" *ngIf="phone.invalid">Номер телефону потрібно вводити в форматі : +380999999999</div>
+        </div>
+        <div class="success-alert"  *ngIf="showMsg">
           <p>
-            <strong>Registration Success!</strong>
+            <strong>Реєстрація пройшла успішно!</strong>
           </p>
-      </div>
-      <div class="form-group">
-        <button type="submit" name="submit" [disabled]="form.invalid" class="signup">Заруєструвати користувача</button>
-      </div>
-      <div class="clearfix">
-        <button type="button" (click)=goHome() class="cancelbtn" >Скасувати</button>
-      </div>
+        </div>
+        <div class="alert"  *ngIf="userAlreadyExist">
+          <p>
+            <strong>Користувач з таким ім'ям вже існує!</strong>
+          </p>
+        </div>
+        <div class="form-group">
+          <button type="submit" name="submit" [disabled]="form.invalid" class="signup">Заруєструвати користувача</button>
+        </div>
+        <div class="clearfix">
+          <button type="button" (click)=goHome() class="cancelbtn" >Скасувати</button>
+        </div>
     </div>
 </form>

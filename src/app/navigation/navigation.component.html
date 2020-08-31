@@ -14,6 +14,7 @@
     <a href="vehicles">Наші машини</a>
     <a href="contacts">Контакти</a>
     <a *ngIf="isAdmin()" href="sign-in">Реєстрація користувача</a>
+    <a *ngIf="!isAdmin() && isUserLoggedIn()" href="profile">Мій профіль</a>
     <div [hidden]="isLoggedIn">
       <nav (click)=goLogin()>Ввійти</nav>
     </div>

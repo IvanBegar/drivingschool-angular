@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {User} from '../shared/user.model';
-import {NgForm} from '@angular/forms';
+import {NgForm, Validators} from '@angular/forms';
 import {ApiService} from '../shared/api.service';
+import {HttpErrorResponse} from '@angular/common/http';
 
 @Component({
   selector: 'app-registration',
@@ -12,6 +13,8 @@ import {ApiService} from '../shared/api.service';
 export class RegistrationComponent implements OnInit {
   user: User;
   showMsg = false;
+  userAlreadyExist = false;
+  mobNumberPattern = '\\+380[0-9]{9}$';
 
   constructor(private router: Router,
               private apiService: ApiService) { }
@@ -28,6 +31,7 @@ export class RegistrationComponent implements OnInit {
     this.user = {
       username : '',
       password : '',
+      phone : '',
       role : ''
     };
   }
@@ -37,8 +41,11 @@ export class RegistrationComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-      this.apiService.registerUser(form.value).subscribe(data => {
-        this.showMsg = true;
-      });
+    this.apiService.registerUser(form.value).subscribe(data => {
+      this.showMsg = true;
+      this.userAlreadyExist = false;
+    }, (error: HttpErrorResponse) => {
+      this.userAlreadyExist = true;
+    });
   }
 }
