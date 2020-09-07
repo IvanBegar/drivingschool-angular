@@ -1,10 +1,14 @@
-<form class="modal-content animate" (submit)=doLogin()>
+<form class="modal-content animate" #form="ngForm" (submit)="doLogin(form)">
     <div class="container">
       <label for="username"><b>Логін</b></label>
-      <input type="text" class="form-control" id="username" placeholder="Логін" name="username" [(ngModel)]="username" required datatype="string">
+      <input type="text" class="form-control" id="username" placeholder="Логін" name="username" [(ngModel)]="request.username" required datatype="string">
 
       <label for="password"><b>Пароль</b></label>
-      <input type="password" class="form-control" id="password" placeholder="Пароль" name="password" [(ngModel)]="password" required datatype="string">
+      <input [type]="showPsw ? 'text' : 'password'" type="password" class="form-control" id="password" placeholder="Пароль" name="password" [(ngModel)]="request.password" required datatype="string">
+      <label class="cont">Показати пароль
+        <input type="checkbox" (click)="showPassword()">
+        <span class="checkmark"></span>
+      </label>
       <div class="alert" *ngIf='invalidLogin'>{{errorMessage}}</div>
       <button type="submit"  >Ввійти</button>
     </div>

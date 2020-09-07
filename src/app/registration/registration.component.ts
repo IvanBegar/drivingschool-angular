@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, NgModule, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {User} from '../shared/user.model';
 import {NgForm, Validators} from '@angular/forms';
@@ -15,9 +15,14 @@ export class RegistrationComponent implements OnInit {
   showMsg = false;
   userAlreadyExist = false;
   mobNumberPattern = '\\+380[0-9]{9}$';
+  showPsw: boolean;
+  showPhone: boolean;
 
   constructor(private router: Router,
-              private apiService: ApiService) { }
+              private apiService: ApiService) {
+    this.showPsw = false;
+    this.showPhone = false;
+  }
 
   ngOnInit(): void {
     this.resetForm();
@@ -47,5 +52,18 @@ export class RegistrationComponent implements OnInit {
     }, (error: HttpErrorResponse) => {
       this.userAlreadyExist = true;
     });
+  }
+
+  showPassword() {
+    this.showPsw = !this.showPsw;
+  }
+
+  selectInput(event) {
+    const selected = event.target.value;
+    if (selected === 'User') {
+      this.showPhone = true;
+    } else {
+      this.showPhone = false;
+    }
   }
 }

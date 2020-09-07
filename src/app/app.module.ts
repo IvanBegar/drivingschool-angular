@@ -27,6 +27,8 @@ import { ApiService } from './shared/api.service';
 import {HttpInterceptorService} from './shared/http-interceptor-service.service';
 import { LogoutComponent } from './logout/logout.component';
 import { ProfileComponent } from './profile/profile.component';
+import { UserProfileComponent } from './profile/user-profile/user-profile.component';
+import { GroupProfileComponent } from './profile/group-profile/group-profile.component';
 
 const appRoutes: Routes = [
   {
@@ -109,6 +111,8 @@ const appRoutes: Routes = [
     ScheduleListComponent,
     LogoutComponent,
     ProfileComponent,
+    UserProfileComponent,
+    GroupProfileComponent,
   ],
   imports: [
     BrowserModule,

@@ -4,6 +4,6 @@
   <tr *ngFor="let sch of scheduleService.list">
     <td (click)="populateForm(sch)">{{sch.name}}</td>
     <td (click)="populateForm(sch)">{{sch.description}}</td>
-    <button (click)="deleteSchedule(sch.schedule_id)" class="btn btn-sm btn-outline-danger">X</button>
+    <button (click)="deleteSchedule(sch.schedule_id)" class="btn">X</button>
   </tr>
 </table>

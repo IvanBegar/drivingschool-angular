@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ScheduleByGroupDTO} from './model/schedule-by-group-dto';
+import {ScheduleByGroup} from './model/schedule-by-group';
 import {ApiService} from '../shared/api.service';
 
 
@@ -9,7 +9,7 @@ import {ApiService} from '../shared/api.service';
   styleUrls: ['./schedule-by-group.component.css']
 })
 export class ScheduleByGroupComponent implements OnInit {
-  schedules: ScheduleByGroupDTO[] = [];
+  schedules: ScheduleByGroup[] = [];
 
   constructor(private apiService: ApiService) {
   }
@@ -18,7 +18,7 @@ export class ScheduleByGroupComponent implements OnInit {
     this.getSchedulesByGroupDTO();
   }
 
-  public getSchedulesByGroupDTO(): ScheduleByGroupDTO[]{
+  public getSchedulesByGroupDTO(): ScheduleByGroup[]{
     this.apiService.getSchedulesByGroupDTO().subscribe(
       res => {
         this.schedules = res;

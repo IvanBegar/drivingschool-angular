@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {ScheduleByGroupDTO} from '../schedule-by-group/model/schedule-by-group-dto';
+import {ScheduleByGroup} from '../schedule-by-group/model/schedule-by-group';
 import {Observable} from 'rxjs';
 import {ScheduleByForm} from '../schedule-by-form/model/scheduleByForm';
 import {Category} from '../category/model/category';
@@ -8,6 +8,8 @@ import {Teacher} from '../teachers/model/teacher';
 import {Schedule} from '../schedules/shared/schedule.model';
 import {User} from './user.model';
 import {Roles} from './roles.enum';
+import {AuthenticationResponse} from '../login/model/authentication-response';
+import {Student} from '../profile/model/student';
 
 @Injectable({
   providedIn: 'root'
@@ -16,21 +18,29 @@ export class ApiService {
   user: User;
   ROLE_TOKEN = 'userRole';
   USER_NAME_SESSION_ATTRIBUTE_NAME = 'authenticatedUser';
-  SESSION_TOKEN: string;
+  PHONE = '';
+  TOKEN: string;
   private BASE_URL = 'http://localhost:8080';
   private USER_URL = `${this.BASE_URL}\\user`;
-  private LOGIN_URL = `${this.BASE_URL}\\login`;
-  private SCHEDULE_BY_GROUP_DTO_URL = `${this.BASE_URL}\\schedules\\per-groups`;
+  private STUDENT_URL = `${this.BASE_URL}\\students`;
+  private AUTHENTICATE_URL = `${this.BASE_URL}\\authenticate`;
+  private GROUPS_SCHEDULE_URL = `${this.BASE_URL}\\groups\\schedules`;
   private ALL_SCHEDULES_URL = `${this.BASE_URL}\\schedules\\all`;
   private SCHEDULES_URL = `${this.BASE_URL}\\schedules`;
   private ALL_CATEGORIES_URL = `${this.BASE_URL}\\categories\\all`;
   private TEACHER_URL = `${this.BASE_URL}\\teachers\\`;
 
   constructor(private http: HttpClient) {
+    this.user = {
+      username: '',
+      password: '',
+      phone: '',
+      role: ''
+    };
   }
 
-  getSchedulesByGroupDTO(): Observable<ScheduleByGroupDTO[]> {
-    return this.http.get<ScheduleByGroupDTO[]>(this.SCHEDULE_BY_GROUP_DTO_URL);
+  getSchedulesByGroupDTO(): Observable<ScheduleByGroup[]> {
+    return this.http.get<ScheduleByGroup[]>(this.GROUPS_SCHEDULE_URL);
   }
 
   getSchedulesByForm(): Observable<ScheduleByForm[]> {
@@ -57,22 +67,26 @@ export class ApiService {
     this.http.delete(this.SCHEDULES_URL + '/' + schedule_id).subscribe();
   }
 
-  doLogin(userName: string, password: string) {
-    return this.http.get(this.LOGIN_URL, { headers: { Authorization: this.createBasicAuthToken(userName, password), 'X-Requested-With': 'XMLHttpRequest' }});
+  getStudent(): Observable<Student> {
+    return this.http.get<Student>(this.STUDENT_URL + '/phone=' + sessionStorage.getItem(this.PHONE));
   }
 
-  createBasicAuthToken(userName: string, password: string) {
-    return 'Basic ' + window.btoa(userName + ':' + password);
+  updateStudent(student: Student) {
+    return this.http.put(this.STUDENT_URL, student);
   }
 
-  registerSuccessfulLogin(username, password) {
-    sessionStorage.setItem(this.SESSION_TOKEN, username + ':' + password);
-    sessionStorage.setItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME, username);
+  doLogin(request) {
+    return this.http.post<AuthenticationResponse>(this.AUTHENTICATE_URL, request);
+  }
+
+  registerSuccessfulLogin(jwt) {
+    sessionStorage.setItem(this.TOKEN, jwt);
+    sessionStorage.setItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME, jwt);
   }
 
   logout() {
     sessionStorage.removeItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME);
-    sessionStorage.removeItem(this.SESSION_TOKEN);
+    sessionStorage.removeItem(this.TOKEN);
     sessionStorage.removeItem(this.ROLE_TOKEN);
   }
 
@@ -85,16 +99,11 @@ export class ApiService {
     }
   }
 
-  getLoggedInUserName() {
-    let user = sessionStorage.getItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME)
-    if (user === null) { return ''}
-    return user;
-  }
-
   getUser() {
     this.http.get<User>(this.USER_URL).subscribe(data => {
       this.user = data;
-      sessionStorage.setItem(this.ROLE_TOKEN, this.user.role); });
+      sessionStorage.setItem(this.ROLE_TOKEN, this.user.role);
+      sessionStorage.setItem(this.PHONE, this.user.phone); });
   }
 
   isAdmin(): boolean{

@@ -5,7 +5,7 @@ import {ApiService} from './api.service';
 
 @Injectable()
 export class HttpInterceptorService implements HttpInterceptor {
-  private SESSION_TOKEN = this.apiService.SESSION_TOKEN;
+  private TOKEN = this.apiService.TOKEN;
 
   constructor(private apiService: ApiService) { }
 
@@ -16,7 +16,7 @@ export class HttpInterceptorService implements HttpInterceptor {
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*',
           'X-Requested-With': 'XMLHttpRequest',
-          Authorization: `Basic ${window.btoa(sessionStorage.getItem(this.SESSION_TOKEN))}`
+          Authorization: `Bearer ${sessionStorage.getItem(this.TOKEN)}`
         })
       });
       return next.handle(authReq);

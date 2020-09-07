@@ -1,7 +1,7 @@
-import { ScheduleByGroupDTO } from './schedule-by-group-dto';
+import { ScheduleByGroup } from './schedule-by-group';
 
 describe('ScheduleByGroupDTO', () => {
   it('should create an instance', () => {
-    expect(new ScheduleByGroupDTO()).toBeTruthy();
+    expect(new ScheduleByGroup()).toBeTruthy();
   });
 });

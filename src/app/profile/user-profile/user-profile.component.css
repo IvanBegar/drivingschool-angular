@@ -1,0 +1,10 @@
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+.form-group{
+  width: 70%;
+  height: 60px;
+}
+
+.form-group .btn{
+  background-color: mediumseagreen;
+}

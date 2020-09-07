@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {ApiService} from '../shared/api.service';
-import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-navigation',
@@ -22,10 +21,6 @@ export class NavigationComponent implements OnInit {
 
   goLogin() {
     this.router.navigate(['/login']);
-  }
-
-  goSignIn() {
-    this.router.navigate(['/sign-in']);
   }
 
   handleLogout() {
