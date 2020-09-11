@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 import {ScheduleByGroup} from '../schedule-by-group/model/schedule-by-group';
 import {Observable} from 'rxjs';
 import {ScheduleByForm} from '../schedule-by-form/model/scheduleByForm';
@@ -18,7 +18,7 @@ export class ApiService {
   user: User;
   ROLE_TOKEN = 'userRole';
   USER_NAME_SESSION_ATTRIBUTE_NAME = 'authenticatedUser';
-  PHONE = '';
+  EMAIL = '';
   TOKEN: string;
   private BASE_URL = 'http://localhost:8080';
   private USER_URL = `${this.BASE_URL}\\user`;
@@ -34,8 +34,8 @@ export class ApiService {
     this.user = {
       username: '',
       password: '',
-      phone: '',
-      role: ''
+      email: '',
+      role: Roles.ROLE_USER
     };
   }
 
@@ -68,7 +68,7 @@ export class ApiService {
   }
 
   getStudent(): Observable<Student> {
-    return this.http.get<Student>(this.STUDENT_URL + '/phone=' + sessionStorage.getItem(this.PHONE));
+    return this.http.get<Student>(this.STUDENT_URL + '/email=' + sessionStorage.getItem(this.EMAIL));
   }
 
   updateStudent(student: Student) {
@@ -101,9 +101,10 @@ export class ApiService {
 
   getUser() {
     this.http.get<User>(this.USER_URL).subscribe(data => {
+      console.log(data);
       this.user = data;
       sessionStorage.setItem(this.ROLE_TOKEN, this.user.role);
-      sessionStorage.setItem(this.PHONE, this.user.phone); });
+      sessionStorage.setItem(this.EMAIL, this.user.email); });
   }
 
   isAdmin(): boolean{

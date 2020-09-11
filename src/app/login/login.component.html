@@ -1,7 +1,7 @@
 <form class="modal-content animate" #form="ngForm" (submit)="doLogin(form)">
     <div class="container">
-      <label for="username"><b>Логін</b></label>
-      <input type="text" class="form-control" id="username" placeholder="Логін" name="username" [(ngModel)]="request.username" required datatype="string">
+      <label for="email"><b>Email</b></label>
+      <input type="email" class="form-control" id="email" placeholder="Email" name="email" [(ngModel)]="request.email" required datatype="string">
 
       <label for="password"><b>Пароль</b></label>
       <input [type]="showPsw ? 'text' : 'password'" type="password" class="form-control" id="password" placeholder="Пароль" name="password" [(ngModel)]="request.password" required datatype="string">

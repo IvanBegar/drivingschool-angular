@@ -1,9 +1,10 @@
-import {Component, NgModule, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {User} from '../shared/user.model';
-import {NgForm, Validators} from '@angular/forms';
+import {NgForm} from '@angular/forms';
 import {ApiService} from '../shared/api.service';
 import {HttpErrorResponse} from '@angular/common/http';
+import {Roles} from '../shared/roles.enum';
 
 @Component({
   selector: 'app-registration',
@@ -14,7 +15,6 @@ export class RegistrationComponent implements OnInit {
   user: User;
   showMsg = false;
   userAlreadyExist = false;
-  mobNumberPattern = '\\+380[0-9]{9}$';
   showPsw: boolean;
   showPhone: boolean;
 
@@ -36,8 +36,8 @@ export class RegistrationComponent implements OnInit {
     this.user = {
       username : '',
       password : '',
-      phone : '',
-      role : ''
+      email : '',
+      role : Roles.ROLE_USER
     };
   }
 
