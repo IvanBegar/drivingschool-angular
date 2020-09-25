@@ -1,4 +1,4 @@
-# DrivingSchoolAngular
+# DrivingSchool Angular
 
 In my website you can login:  as student then you can manage your profile information, check your lessons schedule, teacher’s phone number and some other useful information. 
 As owner of the school or administrator you can manage all information about school, like schedules, categories, groups, vehicles, payments etc.
