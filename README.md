@@ -1,6 +1,9 @@
 # DrivingSchoolAngular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.5.
+In my website you can login:  as student then you can manage your profile information, check your lessons schedule, teacher’s phone number and some other useful information. 
+As owner of the school or administrator you can manage all information about school, like schedules, categories, groups, vehicles, payments etc.
+
+Back-end part of the project - https://github.com/IvanBegar/drivingschool
 
 ## Development server
 
