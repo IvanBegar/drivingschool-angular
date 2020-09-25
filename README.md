@@ -5,6 +5,16 @@ As owner of the school or administrator you can manage all information about sch
 
 Back-end part of the project - https://github.com/IvanBegar/drivingschool
 
+### To start
+
+Copy this repository - https://github.com/IvanBegar/drivingschool-angular
+
+or with command line
+
+```bash
+$ git clone https://github.com/IvanBegar/drivingschool-angular
+```
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
